@@ -1,6 +1,20 @@
-MIT License
+.gr: flatten, refs, willbe :
 
-Copyright (c) 2020 arqive
+Copyright (c) Aaron Davies, https://github.com/adavies42/qist/tree/master/pnl
+Copyright (c) http://nsl.com/q/willbe.q, http://nsl.com/q/willbe.txt
+
+---
+.ut: noflip, f2nd :
+
+Copyright (c) 2016 Nick Psaris under MIT License
+
+--- 
+Contents excluding the above :
+
+Copyright (c) 2020 Daniel Krizian under MIT License
+
+---
+MIT License:
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +33,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
