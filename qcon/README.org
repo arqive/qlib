@@ -1,0 +1,4 @@
+#+begin_src bash -i :results none :session conda-build-qcon
+conda build .
+conda install -y local::qcon
+#+end_src

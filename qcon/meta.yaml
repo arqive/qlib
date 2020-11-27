@@ -1,0 +1,25 @@
+package:
+  name: qcon
+  version: 2020.02.05
+
+source:
+  - git_url: https://github.com/KxSystems/kdb.git
+    git_depth: 1
+
+build:
+  script:
+    - ARCH=l #[linux]
+    - ARCH=m #[osx]
+    - ARCH="$ARCH"64 #[x86_64]
+    - mkdir -p $PREFIX/bin
+    - cp $SRC_DIR/$ARCH/qcon $PREFIX/bin
+
+test:
+  commands:
+    - echo \\\\ | qcon # [linux64]
+
+about:
+  home: https://github.com/KxSystems/kdb
+  license: Apache 2.0
+  license_file: LICENSE
+  summary: console for q/kdb+
