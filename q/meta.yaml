@@ -6,10 +6,11 @@ build:
   number: auto
   string: {{ QBUILD }}
   script:
-    - OSL=l #[linux]
-    - OSL=m #[osx]
     - mkdir -p $PREFIX/{q,bin} $PREFIX/etc/conda/{de,}activate.d
-    - cp $SRC_DIR/{"$OSL"64/q,q16} $PREFIX/bin
+    - ARCH=l #[linux]
+    - ARCH=m #[osx]
+    - ARCH="$ARCH"64 #[x86_64]
+    - cp $SRC_DIR/{$ARCH/q,q16} $PREFIX/bin
     - cp $SRC_DIR/q.k $PREFIX/q
     - cp "${SRC_DIR}/$(basename -- {{ QLICSRC }})" $PREFIX/q
     - chmod +x $PREFIX/bin/{q,q16}
