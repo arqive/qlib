@@ -1,0 +1,4 @@
+#!/bin/bash
+let n="$(nproc)"-1
+let n=$(( n < 15 ? n : 15 ))
+numactl --physcpubind=0-$n q "$@"

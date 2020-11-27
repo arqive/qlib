@@ -1,0 +1,32 @@
+package:
+  name: q
+  version: 4.0    # TODO: infer version from echo .z.K | q -q
+
+build:
+  number: auto
+  string: {{ QBUILD }}
+  script:
+    - OSL=l #[linux]
+    - OSL=m #[osx]
+    - mkdir -p $PREFIX/{q,bin} $PREFIX/etc/conda/{de,}activate.d
+    - cp $SRC_DIR/{"$OSL"64/q,q16} $PREFIX/bin
+    - cp $SRC_DIR/q.k $PREFIX/q
+    - cp "${SRC_DIR}/$(basename -- {{ QLICSRC }})" $PREFIX/q
+    - chmod +x $PREFIX/bin/{q,q16}
+    - for i in {de,}activate; do cp "${RECIPE_DIR}"/"$i".sh "${PREFIX}"/etc/conda/"$i".d/"${PKG_NAME}"_"$i".sh; done  # TODO: decom *activate.sh; use `conda env config vars set`
+
+source:
+  - path: ./
+  - url: file:///{{ QLICSRC }}
+  - url: file:///{{ QZIP }}
+
+
+test:
+  commands:
+    - test -d $QHOME
+    - echo exit 0 | numactl --physcpubind=0 q -q # [linux64]
+
+about:
+  home: https://kx.com/
+  license: Commercial
+  summary: q/kdb+
