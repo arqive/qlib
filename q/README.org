@@ -2,5 +2,5 @@ Download q/kdb+ and license files from [[https://kx.com/connect-with-us/download
 
 #+begin_src bash -i :results none :session conda-build-q
 QLICSRC=~/tmp/kc.lic QZIP=~/tmp/l64.zip QBUILD=$(./getQBUILD.sh) conda build --no-long-test-prefix .
-conda install -y local::q
+# conda install -y local::q
 #+end_src

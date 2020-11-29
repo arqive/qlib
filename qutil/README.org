@@ -1,0 +1,4 @@
+#+begin_src bash -i :results none :session conda-build-qutil
+conda build --no-long-test-prefix --no-include-recipe --no-test .
+conda build --no-long-test-prefix --no-include-recipe --test ~/conda/conda-bld/noarch/qutil-3.2.1-0.tar.bz2
+#+end_src

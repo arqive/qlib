@@ -1,0 +1,42 @@
+package:
+  name: qspec
+  version: 1.3.3
+
+build:
+  number: 0
+  noarch: true
+  script:
+    - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
+    - mkdir -p $DEST
+    - cp -r $SRC_DIR/lib/. $DEST
+    - cp $SRC_DIR/spec.q $PREFIX/bin/
+
+source:
+  - url: https://github.com/danielkrizian/qspec/archive/v1.3.3.tar.gz
+    md5: 4bbda1a8806394da77f3ce76c88e8e25
+  - path: ./
+
+requirements:
+  build:
+    - q
+    - qutil
+  run:
+    - qutil
+
+test:
+  requires:
+    - q
+  source_files:
+    - test
+  commands:
+    - find test -name .empty -type f -delete && spec.q test
+
+about:
+  home: https://github.com/nugend/qspec
+  license: MIT
+  license_file: LICENSE
+  summary: Spec Testing Library for the Q Language
+
+extra:
+  author: Daniel Nugent
+  author_email: nugend@gmail.com
