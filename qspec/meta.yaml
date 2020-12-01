@@ -7,7 +7,7 @@ build:
   noarch: true
   script:
     - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
-    - mkdir -p $DEST
+    - mkdir -p $DEST $PREFIX/bin
     - cp -r $SRC_DIR/lib/. $DEST
     - cp $SRC_DIR/spec.q $PREFIX/bin/
 
@@ -18,7 +18,6 @@ source:
 
 requirements:
   build:
-    - q
     - qutil
   run:
     - qutil

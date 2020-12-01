@@ -6,10 +6,9 @@ build:
   number: 0
   noarch: true
   script:
-    - QPATH=$QHOME/lib
-    - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
+    - QPATH=$PREFIX/q/lib DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
     - mkdir -p $DEST $PREFIX/etc/conda/{de,}activate.d
-    - cp $SRC_DIR/q_q.sample $QHOME/q.q
+    - cp $SRC_DIR/q_q.sample $PREFIX/q/q.q
     - cp $SRC_DIR/lib/bootstrap.q $QPATH
     - cp $SRC_DIR/lib/{config_parse,init,opts}.q $DEST
     - for i in {de,}activate; do cp "$RECIPE_DIR"/"$i".sh "$PREFIX"/etc/conda/"$i".d/"$PKG_NAME"_"$i".sh; done  # TODO: decom *activate.sh; use `conda env config vars set`
@@ -19,10 +18,6 @@ source:
     md5: 3fd181198bc02d4ffe9de812065389c1
   - path: ./
 
-requirements:
-  build:
-    - q
-
 test:
   requires:
     - q
@@ -31,8 +26,8 @@ test:
     - test
     - test_require
   commands:
-    - test $QINIT = $QHOME/q.q
-    - test -f $QHOME/q.q
+    - test $QINIT = $CONDA_PREFIX/q/q.q
+    - test -f $QINIT
     - test -f $QPATH/bootstrap.q
     - echo ".utl.require\"qutil\";.utl.configParsing;.utl.addArg;exit 0" > test.q && q test.q -q
     - echo ".utl.require\"qutil/config_parse.q\"" > init.q && spec.q init.q test
