@@ -7,16 +7,18 @@ source:
     git_depth: 1
 
 build:
+  missing_dso_whitelist:
+    - $RPATH/libc.so.6      # disables warning: $RPATH/libc.so.6 not found in packages, sysroot(s) nor the missing_dso_whitelist
   script:
-    - ARCH=l #[linux]
-    - ARCH=m #[osx]
-    - ARCH="$ARCH"64 #[x86_64]
+    - ARCH=l                #[linux]
+    - ARCH=m                #[osx]
+    - ARCH="$ARCH"64        #[x86_64]
     - mkdir -p $PREFIX/bin
     - cp $SRC_DIR/$ARCH/qcon $PREFIX/bin
 
 test:
   commands:
-    - echo \\\\ | qcon # [linux64]
+    - echo \\\\ | qcon      # [linux64]
 
 about:
   home: https://github.com/KxSystems/kdb
