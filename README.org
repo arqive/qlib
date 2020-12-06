@@ -1,0 +1,9 @@
+
+#+begin_src bash -i :results none :session qlib
+conda install arqive:ut
+#+end_src
+
+#+begin_src q
+.utl.require"ut"
+.ut
+#+end_src

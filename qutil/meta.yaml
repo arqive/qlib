@@ -1,6 +1,6 @@
 package:
   name: qutil
-  version: 3.2.1
+  version: 3.3.0
 
 build:
   number: 0
@@ -14,8 +14,9 @@ build:
     - for i in {de,}activate; do cp "$RECIPE_DIR"/"$i".sh "$PREFIX"/etc/conda/"$i".d/"$PKG_NAME"_"$i".sh; done  # TODO: decom *activate.sh; use `conda env config vars set`
 
 source:
-  - url: https://github.com/danielkrizian/qutil/archive/v3.2.1.tar.gz
-    md5: 3fd181198bc02d4ffe9de812065389c1
+  - git_url: https://github.com/danielkrizian/qutil.git
+    git_rev: {{ PKG_VERSION }}
+    git_depth: 1
   - path: ./
 
 test:

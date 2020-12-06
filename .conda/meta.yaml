@@ -1,0 +1,43 @@
+package:
+  name: {{ PKGNAME }}
+  # {{ environ.get('PKG_NAME', '') }}
+  version: 0.0.1
+
+source:
+  - path: ../{{ PKG_NAME }}/
+
+build:
+  number: auto
+  noarch: true
+  script_env:
+    - PKGNAME
+  script:
+    - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
+    - mkdir -p $DEST
+    - cp $SRC_DIR/"$PKG_NAME".q $DEST
+
+requirements:
+  build:
+    - qutil
+  run:
+    - qutil
+
+
+test:
+  requires:
+    - q
+    - qspec
+  source_files:
+    - test*
+  commands:
+    - spec.q test.exists.q
+
+about:
+  home: https://github.com/arqive/qlib
+  license: MIT
+  license_file: ../LICENSE
+  summary: standard libraries for q/kdb+
+
+extra:
+  author: Daniel Krizian
+  author_email: daniel.krizian@gmail.com

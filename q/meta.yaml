@@ -6,12 +6,12 @@ build:
   number: auto
   string: {{ QBUILD }}
   script:
-    - mkdir -p $PREFIX/{q, bin, etc/conda/{de,}activate.d}
+    - mkdir -p $PREFIX/{q,bin,etc/conda/{de,}activate.d}
     - ARCH=l #[linux]
     - ARCH=m #[osx]
     - ARCH="$ARCH"64 #[x86_64]
     - cp $SRC_DIR/{$ARCH/q,q16} $PREFIX/bin
-    - cp $SRC_DIR/{$(basename -- {{ QLICSRC }}), q.k} $PREFIX/q
+    - cp $SRC_DIR/{$(basename -- {{ QLICSRC }}),q.k} $PREFIX/q
     - chmod +x $PREFIX/bin/{q,q16}
     - for i in {de,}activate; do cp "${RECIPE_DIR}"/"$i".sh "${PREFIX}"/etc/conda/"$i".d/"${PKG_NAME}"_"$i".sh; done  # TODO: decom *activate.sh; use `conda env config vars set`
 
