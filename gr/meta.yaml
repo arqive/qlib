@@ -1,0 +1,44 @@
+package:
+  name: {{ PKGNAME }}
+  version: 0.0.1
+
+source:
+  - path: ../{{ PKG_NAME }}/
+
+build:
+  number: auto
+  noarch: true
+  script_env:
+    - PKGNAME
+  script:
+    - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
+    - mkdir -p $DEST
+    - cp $SRC_DIR/"$PKG_NAME".q $DEST
+
+requirements:
+  build:
+    - qutil
+  run:
+    - qutil
+    - ut
+
+
+test:
+  requires:
+    - q
+    - ut
+    - qspec
+  files:
+    - ../test
+  commands:
+    - spec.q --fail-hard $QPATH/"$PKG_NAME"-"$PKG_VERSION"/gr.q "$PKG_NAME".q
+
+about:
+  home: https://github.com/arqive/qlib
+  license: MIT
+  license_file: ../LICENSE
+  summary: standard libraries for q/kdb+
+
+extra:
+  author: Daniel Krizian
+  author_email: daniel.krizian@gmail.com
