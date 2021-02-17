@@ -1,4 +1,4 @@
 * build package
 #+begin_src bash -i :results none :session conda-build-qlib
-PKGNAME=ut conda build --no-long-test-prefix --no-include-recipe .
+PKGNAME=ut VER=0.0.1 conda build --no-long-test-prefix --no-include-recipe .
 #+end_src

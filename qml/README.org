@@ -1,0 +1,12 @@
+Build locally ...
+
+#+begin_src bash -i :results none :session conda-build-qml
+conda build --no-long-test-prefix --no-include-recipe .
+conda install -y local::qml
+#+end_src
+
+... or alternatively, install from Anaconda Cloud:
+
+#+begin_src bash -i :results none :session conda-build-qml
+conda install -y arqive::qml
+#+end_src

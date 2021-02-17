@@ -1,9 +1,43 @@
+*** reuse q/kdb+ functions between projects with ease
+
+* qlib - rich library at fingertips
+
+TODO: make the library rich. collect and curate reusable functions like stamps.
+
+** install from repository
+
+get [[https://docs.conda.io/en/latest/miniconda.html][conda]] or [[https://github.com/mamba-org/mamba][mamba]] (cross-platform packaging, dependency management and virtual environment isolation tool).
+
+install the packaged module from the repository, e.g. =ut= from arqive:
 
 #+begin_src bash -i :results none :session qlib
-conda install arqive:ut
+$ conda install arqive::ut
 #+end_src
 
+** reuse, reuse, reuse ...
+
 #+begin_src q
-.utl.require"ut"
-.ut
+q).utl.require"ut"
+q).ut
+      | ::
+map   | {enlist[x]!enlist y}
+filter| {y where x y,:()}
+inj   | {[x;i;y]2 raze/ flip ((count y;1)#y;) i cut x}
+...
 #+end_src
+
+** namespaces available
+
+each of the below namespaces to be loaded individually with =.utl.require"<module.name><optional.version.qualifier>"=
+
+- ut - general purpose utilities
+- gr - graphs
+- is - is x something?
+- os - operational system specific utilities
+- st - statistical functions
+- tx - text and string processing, config files automation
+- ...
+
+* license
+
+shared copyright model that enables all contributors to maintain the copyright on their contributions. see the file:LICENSE

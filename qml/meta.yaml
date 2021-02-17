@@ -1,0 +1,43 @@
+package:
+  name: qml
+  version: 0.7.3
+
+source:
+  - git_url: https://github.com/zholos/qml.git
+    git_tag: v0.7.3
+    git_depth: 1
+  - path: ./
+
+requirements:
+  build:
+    - conda-forge::fortran-compiler
+    - q
+    - qutil
+  run:
+    - q
+    - qutil
+
+build:
+  number: {{ GIT_DESCRIBE_NUMBER }}
+  string: {{ GIT_BUILD_STR }}
+  script:
+    - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
+    - mkdir -p $DEST
+    - echo ".utl.pkg\"qml.q\"" > init.q && cp init.q $DEST
+    - cp "${SRC_DIR}"/src/qml.q $DEST
+    - ./configure --build-blas
+    - make
+    - mkdir -p $QHOME/l64 && cp "${SRC_DIR}"/src/qml.so "${QHOME}"/l64 #[linux and x86_64]
+
+test:
+  requires:
+    - q
+    - qutil
+  commands:
+    - echo ".utl.require\"qml\";.qml.nicdf .25" | numactl --physcpubind=0 q -q #[linux64]
+
+about:
+  home: http://althenia.net/qml
+  license: BSD
+  license_file: LICENSE.txt
+  summary: math library for kdb+

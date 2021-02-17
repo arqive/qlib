@@ -2,7 +2,7 @@
  should["be dictionary mapping from list of direct predecessors to list of lists: their direct successors"]{
   `g mock `a`b`c!(1#`e;();1#`f`g);                 / usually symbols dict
   `h mock 1 2 3!(4 5;();1#6);                      / but nodes can be denoted with non-symbols too
-  11b mustmatch .gr.dir each (g;h);
+  11b mustmatch .is.dir each (g;h);
   };
  should["detect any circular dependencies - cycles"]{
   /    a -> b -> c

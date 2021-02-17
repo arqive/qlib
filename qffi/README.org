@@ -1,0 +1,12 @@
+Build locally ...
+
+#+begin_src bash -i :results none :session conda-build-qffi
+conda build --no-long-test-prefix --no-include-recipe .
+conda install -y local::qffi
+#+end_src
+
+... or alternatively, install from Anaconda Cloud:
+
+#+begin_src bash -i :results none :session conda-build-qffi
+conda install -y arqive::qffi
+#+end_src

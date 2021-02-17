@@ -1,16 +1,18 @@
+# {% set version = "0.0.1" %}
+
 package:
   name: {{ PKGNAME }}
-  # {{ environ.get('PKG_NAME', '') }}
-  version: 0.0.1
+  version: {{ VER }}
 
 source:
-  - path: ../{{ PKG_NAME }}/
+  - path: ../{{ PKG_NAME }}.q
 
 build:
   number: auto
   noarch: true
   script_env:
     - PKGNAME
+    - VER
   script:
     - DEST=$QPATH/"$PKG_NAME"-"$PKG_VERSION"
     - mkdir -p $DEST
@@ -22,15 +24,17 @@ requirements:
   run:
     - qutil
 
-
 test:
   requires:
     - q
     - qspec
-  source_files:
-    - test*
+    - ut
+  files:
+    - ../test/{{ PKG_NAME }}.q
+    - ../test/{{ PKG_NAME }}/*
   commands:
-    - spec.q test.exists.q
+    - test -d {{ PKG_NAME }} && mkdir test && mv {{ PKG_NAME }} test/
+    - spec.q --fail-hard $QPATH/{{ PKG_NAME }}-{{ PKG_VERSION }}/{{ PKG_NAME }}.q {{ PKG_NAME }}.q
 
 about:
   home: https://github.com/arqive/qlib

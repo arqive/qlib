@@ -1,0 +1,4 @@
+.tst.desc[""]{
+ should["dummy"]{
+  };
+ };

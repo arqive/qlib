@@ -1,0 +1,6 @@
+quick brown fox {jumps} over lazy dog
+quick brown squirrel {jumps} over lazy dog
+quick white fox {jumps} over lazy dog
+quick white squirrel {jumps} over lazy dog
+quick black fox {jumps} over lazy dog
+quick black squirrel {jumps} over lazy dog
