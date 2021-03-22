@@ -1,3 +1,16 @@
+.tst.desc["is *something* functions"]{
+ should["identify correctly keyed table"]{
+  `t mock ([]`a`b;1 2);
+  (not .ut.qkt t) must "expect other than keyed table";
+  `t mock ([`a`b];1 2);
+  (.ut.qkt t) must "expect keyed table";
+  };
+ should["test if symbol/path/file is defined"]{
+  `env.e mock ();
+  0011111b mustmatch .ut.qd each `a`b`.q`.`env.e`:/home/dk/.bashrc`:/home/dk;
+  };
+ };
+
 .tst.desc[".ut.ind"]{
  should["extract keys or indices of a nested dictionary, directory or list"]{
   `nestDict mock ("aa";"bb";"cc")!(
