@@ -3,7 +3,6 @@ package:
   version: 4.0    # TODO: infer version from echo .z.K | q -q
 
 build:
-  number: auto
   string: {{ QBUILD }}
   script:
     - mkdir -p $PREFIX/{q,bin,etc/conda/{de,}activate.d}
